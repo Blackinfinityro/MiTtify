@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MiTtify.Components;
 using MiTtify.Components.Account;
+using MiTtify.Components.Middleware;
 using MiTtify.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,5 +61,7 @@ app.MapRazorComponents<App>()
 
 // Add additional endpoints required by the Identity /Account Razor components.
 app.MapAdditionalIdentityEndpoints();
+
+app.UsaProteggiFile(new("/FileSegreti"));
 
 app.Run();
