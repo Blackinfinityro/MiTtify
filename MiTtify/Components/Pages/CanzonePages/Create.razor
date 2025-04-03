@@ -1,0 +1,49 @@
+﻿@page "/canzones/create"
+@using Microsoft.EntityFrameworkCore
+@using MiTtify.DataBase
+@inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Canzone</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Canzone" OnValidSubmit="AddCanzone" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome:</label> 
+                <InputText id="nome" @bind-Value="Canzone.Nome" class="form-control" aria-required="true"/> 
+                <ValidationMessage For="() => Canzone.Nome" class="text-danger" /> 
+            </div>  
+            <div class="mb-3">
+                <label for="autore" class="form-label">Autore:</label> 
+                <InputText id="autore" @bind-Value="Canzone.Autore" class="form-control" aria-required="true"/> 
+                <ValidationMessage For="() => Canzone.Autore" class="text-danger" /> 
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/canzones">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Canzone Canzone { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddCanzone()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Canzone.Add(Canzone);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/canzones");
+    }
+}

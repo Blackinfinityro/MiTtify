@@ -1,0 +1,37 @@
+﻿@page "/canzones"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using MiTtify.DataBase
+@using MiTtify.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="canzones/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Canzone">
+    <PropertyColumn Property="canzone => canzone.Nome" />
+    <PropertyColumn Property="canzone => canzone.Autore" />
+
+    <TemplateColumn Context="canzone">
+        <a href="@($"canzones/edit?id={canzone.Id}")">Edit</a> |
+        <a href="@($"canzones/details?id={canzone.Id}")">Details</a> |
+        <a href="@($"canzones/delete?id={canzone.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private MiTtifyContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

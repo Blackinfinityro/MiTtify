@@ -1,0 +1,50 @@
+﻿@page "/canzones/details"
+@using Microsoft.EntityFrameworkCore
+@using MiTtify.DataBase
+@inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Canzone</h2>
+    <hr />
+    @if (canzone is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Nome</dt>
+            <dd class="col-sm-10">@canzone.Nome</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Autore</dt>
+            <dd class="col-sm-10">@canzone.Autore</dd>
+        </dl>
+        <div>
+            <a href="@($"/canzones/edit?id={canzone.Id}")">Edit</a> |
+            <a href="@($"/canzones")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Canzone? canzone;
+
+    [SupplyParameterFromQuery]
+    private string Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        canzone = await context.Canzone.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (canzone is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}
