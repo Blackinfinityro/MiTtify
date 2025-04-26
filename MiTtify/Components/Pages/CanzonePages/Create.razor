@@ -1,6 +1,8 @@
 ﻿@page "/canzones/create"
+@rendermode InteractiveServer
 @using Microsoft.EntityFrameworkCore
 @using MiTtify.DataBase
+@inject IWebHostEnvironment Env
 @inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
 @inject NavigationManager NavigationManager
 
@@ -25,6 +27,11 @@
                 <InputText id="autore" @bind-Value="Canzone.Autore" class="form-control" aria-required="true"/> 
                 <ValidationMessage For="() => Canzone.Autore" class="text-danger" /> 
             </div>
+            <div class="mb-3">
+                <label class="form-label">FilePath:</label>
+                <InputFile OnChange="OnFileSelected" accept=".mp3"></InputFile>
+                <ValidationMessage For="() => Canzone.FilePath" class="text-danger" />
+            </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
     </div>
@@ -37,13 +44,39 @@
 @code {
     [SupplyParameterFromForm]
     private Canzone Canzone { get; set; } = new();
-
-    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private IBrowserFile? _file;
+    
+    private async Task OnFileSelected(InputFileChangeEventArgs e)
+    {
+        Console.WriteLine("onFileSelected richiamato");
+         _file = e.File;
+         Console.WriteLine($"File selezionato: {_file?.Name}");
+    }
+    
     private async Task AddCanzone()
     {
+        Console.WriteLine("chiamataTask");
+        if (_file == null)
+        {
+            Console.WriteLine("Errore");
+            return;
+        }
+        var uploadsFolder = Path.Combine(Env.WebRootPath, "audio");
+        Console.WriteLine("upload cartella: {uploadsFolder}");
+        Directory.CreateDirectory(uploadsFolder);
+
+        var filePath = Path.Combine(uploadsFolder, _file.Name);
+        Console.WriteLine($"salvataggio in {filePath}");
+        
+        await using var fs = File.Create(filePath);
+        await _file.OpenReadStream(20*1024*1024).CopyToAsync(fs); //Dimensione massima file dowloand
+        Console.WriteLine("file salvato");
+        
+        Canzone.FilePath = $"audio/{_file.Name}";
         using var context = DbFactory.CreateDbContext();
         context.Canzone.Add(Canzone);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/canzones");
+        Console.WriteLine("Canzone nel database");
     }
 }
