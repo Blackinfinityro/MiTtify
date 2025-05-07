@@ -1,4 +1,5 @@
 ﻿@page "/canzones/edit"
+@rendermode InteractiveServer
 @using Microsoft.EntityFrameworkCore
 @using MiTtify.DataBase
 @inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
@@ -48,7 +49,6 @@ else
 
     [SupplyParameterFromForm]
     private Canzone? Canzone { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();

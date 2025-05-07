@@ -32,6 +32,11 @@
                 <InputFile OnChange="OnFileSelected" accept=".mp3"></InputFile>
                 <ValidationMessage For="() => Canzone.FilePath" class="text-danger" />
             </div>
+            <div class="mb-3">
+                <label class="form-label">ImagePath:</label>
+                <InputFile OnChange="OnFileImageSelected" accept=".jpeg, .png"></InputFile>
+                <ValidationMessage For="() => Canzone.ImagePath" class="text-danger" />
+            </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
     </div>
@@ -45,12 +50,20 @@
     [SupplyParameterFromForm]
     private Canzone Canzone { get; set; } = new();
     private IBrowserFile? _file;
+    private IBrowserFile? _imagefile;
     
     private async Task OnFileSelected(InputFileChangeEventArgs e)
     {
         Console.WriteLine("onFileSelected richiamato");
          _file = e.File;
          Console.WriteLine($"File selezionato: {_file?.Name}");
+    }
+    
+    private async Task OnFileImageSelected(InputFileChangeEventArgs e)
+    {
+        Console.WriteLine("onFileImageSelected richiamato");
+        _imagefile = e.File;
+        Console.WriteLine($"File selezionato: {_imagefile?.Name}");
     }
     
     private async Task AddCanzone()
@@ -61,17 +74,30 @@
             Console.WriteLine("Errore");
             return;
         }
+        if (_imagefile == null)
+        {
+            Console.WriteLine("Errore");
+            return;
+        }
         var uploadsFolder = Path.Combine(Env.WebRootPath, "audio");
+        var uploadsFolderImage = Path.Combine(Env.WebRootPath, "audio_image");
         Console.WriteLine("upload cartella: {uploadsFolder}");
+        Console.WriteLine("upload cartella: {uploadsFolderImage}");
+        Directory.CreateDirectory(uploadsFolder);
         Directory.CreateDirectory(uploadsFolder);
 
         var filePath = Path.Combine(uploadsFolder, _file.Name);
+        var imagePath = Path.Combine(uploadsFolderImage, _imagefile.Name);
         Console.WriteLine($"salvataggio in {filePath}");
+        Console.WriteLine($"salvataggio in {imagePath}");
         
         await using var fs = File.Create(filePath);
+        await using var fs2 = File.Create(imagePath);
         await _file.OpenReadStream(20*1024*1024).CopyToAsync(fs); //Dimensione massima file dowloand
         Console.WriteLine("file salvato");
         
+
+        Canzone.ImagePath = $"image/{_imagefile.Name}";
         Canzone.FilePath = $"audio/{_file.Name}";
         using var context = DbFactory.CreateDbContext();
         context.Canzone.Add(Canzone);

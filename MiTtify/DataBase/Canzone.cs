@@ -11,5 +11,6 @@ namespace MiTtify.DataBase
         [Required] public string Nome { get; set; }
         [Required] public string Autore { get; set; } = null!;
         public string FilePath { get; set; } = null!;
+        public string ImagePath { get; set; } = null!;
     }
 }
