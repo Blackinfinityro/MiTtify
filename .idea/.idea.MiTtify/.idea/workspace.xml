@@ -9,7 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b41af1c-9ecc-49f1-8d7f-22c26e5bbdbe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/MiTtify/Components/Pages/Player.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/Components/Pages/Player.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiTtify/MiTtifyContext-175c5284-6edc-465e-b22e-15d14e3d8d78.db" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/MiTtifyContext-175c5284-6edc-465e-b22e-15d14e3d8d78.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +62,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3972bc90d1fa47f1b3ddf719b2fbfe38e22400/d7/c8a65952/FileStream.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/Mela/RiderProjects/MiTtify/MiTtify/Components/Pages/Player.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -138,6 +140,11 @@
       <workItem from="1744922737845" duration="7031000" />
       <workItem from="1745308540740" duration="9387000" />
       <workItem from="1745697377110" duration="3289000" />
+      <workItem from="1745705772078" duration="383000" />
+      <workItem from="1745706169781" duration="141000" />
+      <workItem from="1746041183604" duration="15000" />
+      <workItem from="1746041888064" duration="239000" />
+      <workItem from="1746644574253" duration="602000" />
     </task>
     <task id="LOCAL-00001" summary="Database canzoni">
       <option name="closed" value="true" />
@@ -147,7 +154,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745700734711</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="aggiunta file al commit">
+      <option name="closed" value="true" />
+      <created>1745705831729</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745705831729</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Commit di sicurezza">
+      <option name="closed" value="true" />
+      <created>1745706013748</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745706013748</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,10 +184,23 @@
     <option featureType="dependencySupport" implementationName="dotnet:Microsoft.EntityFrameworkCore.Relational" />
     <option featureType="dependencySupport" implementationName="dotnet:Microsoft.EntityFrameworkCore" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Database canzoni" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database canzoni" />
+    <MESSAGE value="aggiunta file al commit" />
+    <MESSAGE value="Commit di sicurezza" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit di sicurezza" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
