@@ -1,3 +1,3 @@
 # MiTtify
-/canzones per aprire l'index del database delle canzoni
-/player per aprire il player delle canzoni
+<p>/canzones per aprire l'index del database delle canzoni</p>
+<p>/player per aprire il player delle canzoni</p>
