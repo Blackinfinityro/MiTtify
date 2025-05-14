@@ -30,12 +30,18 @@ namespace MiTtify.Migrations.MiTtify
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FirstGenre")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecondGenre")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

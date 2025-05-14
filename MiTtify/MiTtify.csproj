@@ -24,7 +24,7 @@
     <Folder Include="Data\Migrations\" />
     <Folder Include="Migrations\MiTtify\" />
     <Folder Include="wwwroot\audio\" />
-    <Folder Include="wwwroot\audio_image\" />
+    <Folder Include="wwwroot\image\" />
   </ItemGroup>
 
 </Project>

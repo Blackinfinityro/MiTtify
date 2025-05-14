@@ -1,10 +1,31 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@using MiTtify.DataBase
+@using MiTtify.Data
+@inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
 
 @attribute [Authorize]
 
 <PageTitle>Home</PageTitle>
+<p>Canzoni</p>
+<div>
+    @foreach (var canzone in Canzoni)
+    {
+        <div>
+            <img src="@canzone.ImagePath" alt="Immagine per @canzone.Nome">
+            <h2>@canzone.Nome</h2>
+            <p>@canzone.Autore</p>
+        </div>
+    }
+</div>
+@code {
+    private List<Canzone> Canzoni = new();
 
-<h1>Hello, world!</h1>
-<h1>aduiwejhqi98uieq</h1>
-<p>DFJOtdfunbyio</p>
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Canzoni = await context.Canzone.ToListAsync();
+    }
+}
 
