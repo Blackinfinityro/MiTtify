@@ -2,29 +2,15 @@
 @rendermode InteractiveServer
 @using Microsoft.EntityFrameworkCore
 @using MiTtify.DataBase
+@using MiTtify.Components.Shared
 @inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
 
-<h3> Scegli una canzone:</h3>
+
+<h3> Scegli una canzone: </h3>
 
 @if (Canzoni.Any())
 {
-    <select @onchange="OnSongSelected" class="form-select">
-        <option value="">-- Seleziona una canzone --</option>
-        @foreach (var song in Canzoni)
-        {
-            <option value="@song.FilePath">@song.Nome - @song.Autore</option>
-        }
-    </select>
-
-    @if (!string.IsNullOrEmpty(SelectedSongPath))
-    {
-        <div class="mt-4">
-            <audio controls autoplay>
-                <source src="@SelectedSongPath" type="audio/mp3">
-                Il tuo browser non supporta il player audio.
-            </audio>
-        </div>
-    }
+    <AudioPlayer Songs="Canzoni" />
 }
 else
 {
@@ -33,16 +19,10 @@ else
 
 @code {
     private List<Canzone> Canzoni = new();
-    private string? SelectedSongPath;
 
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
         Canzoni = await context.Canzone.ToListAsync();
-    }
-
-    private void OnSongSelected(ChangeEventArgs e)
-    {
-        SelectedSongPath = e.Value?.ToString();
     }
 }

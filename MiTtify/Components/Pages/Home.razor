@@ -1,31 +1,79 @@
 ﻿@page "/"
 @rendermode InteractiveServer
+@implements IDisposable
 @using Microsoft.EntityFrameworkCore
 @using MiTtify.DataBase
 @using MiTtify.Data
+@using MiTtify.Components.Pages
+@using MiTtify.Components.Shared
 @inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
+@inject NavigationManager NavigationManager
 
 @attribute [Authorize]
 
 <PageTitle>Home</PageTitle>
-<p>Canzoni</p>
-<div>
-    @foreach (var canzone in Canzoni)
-    {
-        <div>
-            <img src="@canzone.ImagePath" alt="Immagine per @canzone.Nome">
-            <h2>@canzone.Nome</h2>
-            <p>@canzone.Autore</p>
+<div id="contenitore-titolo">
+    <img id="immagineTitolo" src="photo_2025-05-20_21-08-45 senza sfondo.png" height="120px">
+    <p id="titolo">MiTtify</p>
+    <NavLink class="nav-link" href="Account/Manage">
+        <img id="immagineProfilo" href="Account/Manage" src="photo_2025-05-20_21-08-45 senza sfondo.png" height="120px">
+    </NavLink>
+    
+</div>
+
+<div class="contenitore-canzoni">
+    @foreach (var canzone in Canzoni) {
+        <div class="canzone" @onclick="@(() => PlaySong(canzone.FilePath))" style="width: 268px;">
+            <img class="immagini-canzoni" src="@canzone.ImagePath" alt="Immagine per @canzone.Nome" width="268px" height="268px">
+            <div>
+                <p class="nome-canzoni">@canzone.Nome</p>
+                <p class="autore-canzoni">@canzone.Autore</p>
+            </div>
         </div>
     }
 </div>
+@if (!string.IsNullOrEmpty(CurrentSongPath)) {
+    <div class="mt-4">
+        <audio controls autoplay @key="CurrentSongPath">
+            <source src="@CurrentSongPath" type="audio/mp3" />
+            Il tuo browser non supporta l'elemento audio.
+        </audio>
+    </div>
+}
+else {
+    <p>Nessuna canzone disponibile.</p>
+}
+
 @code {
     private List<Canzone> Canzoni = new();
-
+    private string? CurrentSongPath;
+    private string? currentUrl;
+    
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
         Canzoni = await context.Canzone.ToListAsync();
     }
+    private void PlaySong(string path)
+    {
+        CurrentSongPath = path;
+    }
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
 }
 

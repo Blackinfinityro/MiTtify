@@ -1,0 +1,37 @@
+@using MiTtify.DataBase
+@using MiTtify.Components.Shared
+@if (Songs?.Any() == true)
+{
+    <select @onchange="OnSongSelected" class="form-select">
+        <option value="">-- Seleziona una canzone --</option>
+        @foreach (var song in Songs)
+        {
+            <option value="@song.FilePath">@song.Nome - @song.Autore</option>
+        }
+    </select>
+
+    @if (!string.IsNullOrEmpty(SelectedSongPath))
+    {
+        <div class="mt-4">
+            <audio controls>
+                <source src="@SelectedSongPath" type="audio/mp3" />
+                Il tuo browser non supporta il player audio.
+            </audio>
+        </div>
+    }
+}
+else
+{
+    <p>Non ci sono canzoni da riprodurre.</p>
+}
+
+@code {
+    [Parameter] public List<Canzone>? Songs { get; set; }
+
+    private string? SelectedSongPath;
+
+    private void OnSongSelected(ChangeEventArgs e)
+    {
+        SelectedSongPath = e.Value?.ToString();
+    }
+}

@@ -94,6 +94,7 @@
         await using var fs = File.Create(filePath);
         await using var fs2 = File.Create(imagePath);
         await _file.OpenReadStream(20*1024*1024).CopyToAsync(fs); //Dimensione massima file dowloand
+        await _imagefile.OpenReadStream(20 * 1024 * 1024).CopyToAsync(fs2);
         Console.WriteLine("file salvato");
         
 

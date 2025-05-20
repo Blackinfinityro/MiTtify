@@ -8,18 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b41af1c-9ecc-49f1-8d7f-22c26e5bbdbe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MiTtify/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/Components/Pages/CanzonePages/Create.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/Components/Pages/CanzonePages/Create.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/Components/Pages/Home.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/Components/Pages/Player.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/Components/Pages/Player.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/DataBase/Canzone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/DataBase/Canzone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/MiTtify.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/MiTtify.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/MiTtifyContext-175c5284-6edc-465e-b22e-15d14e3d8d78.db" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/MiTtifyContext-175c5284-6edc-465e-b22e-15d14e3d8d78.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiTtify/Migrations/MiTtify/MiTtifyContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiTtify/Migrations/MiTtify/MiTtifyContextModelSnapshot.cs" afterDir="false" />
-    </list>
+    <list default="true" id="9b41af1c-9ecc-49f1-8d7f-22c26e5bbdbe" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,7 +143,7 @@
       <workItem from="1746041888064" duration="239000" />
       <workItem from="1746644574253" duration="1227000" />
       <workItem from="1746646481206" duration="8315000" />
-      <workItem from="1747254057538" duration="6083000" />
+      <workItem from="1747254057538" duration="6141000" />
     </task>
     <task id="LOCAL-00001" summary="Database canzoni">
       <option name="closed" value="true" />
@@ -228,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746657927999</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="modifiche varie">
+      <option name="closed" value="true" />
+      <created>1747261165201</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747261165201</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +261,8 @@
     <MESSAGE value="a" />
     <MESSAGE value="s" />
     <MESSAGE value="Aggiunta immagini al database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta immagini al database" />
+    <MESSAGE value="modifiche varie" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifiche varie" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
