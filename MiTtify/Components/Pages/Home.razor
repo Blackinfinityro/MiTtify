@@ -15,34 +15,39 @@
 <div id="contenitore-titolo">
     <img id="immagineTitolo" src="photo_2025-05-20_21-08-45 senza sfondo.png" height="120px">
     <p id="titolo">MiTtify</p>
-    <NavLink class="nav-link" href="Account/Manage">
-        <img id="immagineProfilo" href="Account/Manage" src="photo_2025-05-20_21-08-45 senza sfondo.png" height="120px">
-    </NavLink>
+    <div id="immagineProfilo">
+        <NavLink class="nav-link" href="Account/Manage">
+            <img href="Account/Manage" src="photo_2025-05-20_21-08-45 senza sfondo.png" height="120px">
+        </NavLink>
+    </div>
+    
     
 </div>
-
-<div class="contenitore-canzoni">
-    @foreach (var canzone in Canzoni) {
-        <div class="canzone" @onclick="@(() => PlaySong(canzone.FilePath))" style="width: 268px;">
-            <img class="immagini-canzoni" src="@canzone.ImagePath" alt="Immagine per @canzone.Nome" width="268px" height="268px">
-            <div>
-                <p class="nome-canzoni">@canzone.Nome</p>
-                <p class="autore-canzoni">@canzone.Autore</p>
+<div id="webapp">
+    <div class="contenitore-canzoni">
+        @foreach (var canzone in Canzoni) { 
+            <div class="canzone" @onclick="@(() => PlaySong(canzone.FilePath))" style="width: 268px;">
+                <img class="immagini-canzoni" src="@canzone.ImagePath" alt="Immagine per @canzone.Nome" width="268px" height="268px">
+                <div>
+                    <p class="nome-canzoni">@canzone.Nome</p>
+                    <p class="autore-canzoni">@canzone.Autore</p>
+                </div>
             </div>
+        }
+    </div>
+    @if (!string.IsNullOrEmpty(CurrentSongPath)) { 
+        <div class="mt-4">
+            <audio controls autoplay @key="CurrentSongPath">
+                <source src="@CurrentSongPath" type="audio/mp3" />
+                Il tuo browser non supporta l'elemento audio.
+            </audio>
         </div>
     }
+    else {
+        <p>Nessuna canzone disponibile.</p>
+    }
 </div>
-@if (!string.IsNullOrEmpty(CurrentSongPath)) {
-    <div class="mt-4">
-        <audio controls autoplay @key="CurrentSongPath">
-            <source src="@CurrentSongPath" type="audio/mp3" />
-            Il tuo browser non supporta l'elemento audio.
-        </audio>
-    </div>
-}
-else {
-    <p>Nessuna canzone disponibile.</p>
-}
+
 
 @code {
     private List<Canzone> Canzoni = new();
@@ -75,5 +80,5 @@ else {
         NavigationManager.LocationChanged -= OnLocationChanged;
     }
 }
-}
+
 

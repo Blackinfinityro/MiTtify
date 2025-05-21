@@ -5,7 +5,13 @@
 
 #contenitore-titolo{
     display: grid;
-    grid-template-columns: max-content max-content max-content;
+    grid-template-columns: auto auto 1fr;
+    position: sticky;
+    background-color: rgba(23, 30, 44, 0.28);
+}
+
+#immagineProfilo{
+    justify-self: end;
 }
 
 .contenitore-canzoni{
@@ -18,6 +24,8 @@
     align-content: center;
     border-radius: 15px;
     background-color: rgba(59, 72, 115, 0.28);
+    margin-bottom: 15px;
+    margin-right: 15px;
 }
 
 .canzone:hover{
@@ -40,13 +48,25 @@
     margin-left: 10px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 5120px) {
+    .contenitore-canzoni {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1920px) {
+    .contenitore-canzoni {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1680px) {
     .contenitore-canzoni {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
     .contenitore-canzoni {
         grid-template-columns: repeat(2, 1fr);
     }
