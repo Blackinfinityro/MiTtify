@@ -1,5 +1,7 @@
 @using MiTtify.DataBase
 @using MiTtify.Components.Shared
+@inject IJSRuntime JSRuntime
+
 @if (Songs?.Any() == true)
 {
     <select @onchange="OnSongSelected" class="form-select">
@@ -13,7 +15,7 @@
     @if (!string.IsNullOrEmpty(SelectedSongPath))
     {
         <div class="mt-4">
-            <audio controls>
+            <audio controls @ref="AudioReference">
                 <source src="@SelectedSongPath" type="audio/mp3" />
                 Il tuo browser non supporta il player audio.
             </audio>
@@ -27,11 +29,13 @@ else
 
 @code {
     [Parameter] public List<Canzone>? Songs { get; set; }
+    ElementReference AudioReference;
 
     private string SelectedSongPath = null;
 
-    private void OnSongSelected(ChangeEventArgs e)
+    private async Task OnSongSelected(ChangeEventArgs e)
     {
         SelectedSongPath = e.Value?.ToString();
+        await JSRuntime.InvokeVoidAsync("playAudio", AudioReference, SelectedSongPath);
     }
 }
