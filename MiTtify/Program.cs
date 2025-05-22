@@ -8,12 +8,16 @@ using MiTtify.Components.Middleware;
 using MiTtify.Data;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.DependencyInjection;
+using BitzArt.Blazor.Cookies;
+using MiTtify.Classi;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextFactory<MiTtifyContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MiTtifyContext") ?? throw new InvalidOperationException("Connection string 'MiTtifyContext' not found.")));
 
 builder.Services.AddQuickGridEntityFrameworkAdapter();
+builder.AddBlazorCookies();
+builder.Services.AddScoped<GestoreTema>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

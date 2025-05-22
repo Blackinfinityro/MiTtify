@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using MiTtify.Classi
+@inject GestoreTema GestoreTema
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,9 +16,18 @@
     <HeadOutlet />
 </head>
 
-<body>
+<body data-bs-theme="@Tema">
     <Routes />
     <script src="_framework/blazor.web.js"></script>
 </body>
 
 </html>
+
+@code {
+    string Tema = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Tema = await GestoreTema.PrendiTema();
+    }
+}

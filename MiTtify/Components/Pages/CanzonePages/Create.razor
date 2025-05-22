@@ -84,7 +84,7 @@
         Console.WriteLine("upload cartella: {uploadsFolder}");
         Console.WriteLine("upload cartella: {uploadsFolderImage}");
         Directory.CreateDirectory(uploadsFolder);
-        Directory.CreateDirectory(uploadsFolder);
+        Directory.CreateDirectory(uploadsFolderImage);
 
         var filePath = Path.Combine(uploadsFolder, _file.Name);
         var imagePath = Path.Combine(uploadsFolderImage, _imagefile.Name);

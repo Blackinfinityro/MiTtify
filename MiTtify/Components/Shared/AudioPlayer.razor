@@ -28,7 +28,7 @@ else
 @code {
     [Parameter] public List<Canzone>? Songs { get; set; }
 
-    private string? SelectedSongPath;
+    private string SelectedSongPath = null;
 
     private void OnSongSelected(ChangeEventArgs e)
     {
