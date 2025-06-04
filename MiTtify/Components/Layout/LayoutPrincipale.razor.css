@@ -2,11 +2,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: darkseagreen
+    min-height: 100vh;
+    background: #000F3F;
+    background: linear-gradient(180deg, rgba(0, 15, 63, 1) 46%, rgba(9, 9, 121, 1) 96%, rgba(2, 56, 173, 1) 100%);
 }
-
 main {
     flex: 1;
+    background: #000F3F;
+    background: linear-gradient(180deg, rgba(0, 15, 63, 1) 46%, rgba(9, 9, 121, 1) 96%, rgba(2, 56, 173, 1) 100%);
 }
 
 .sidebar {
@@ -91,9 +94,9 @@ main {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}

@@ -12,30 +12,24 @@
         }
     </select>
 
-    @if (!string.IsNullOrEmpty(SelectedSongPath))
-    {
-        <div class="mt-4">
-            <audio controls @ref="AudioReference">
-                <source src="@SelectedSongPath" type="audio/mp3" />
-                Il tuo browser non supporta il player audio.
-            </audio>
-        </div>
-    }
-}
-else
-{
-    <p>Non ci sono canzoni da riprodurre.</p>
+    
+    <div class="mt-4"style=@($"display:{(string.IsNullOrEmpty(SelectedSongPath)? "none":"block")}")>
+        <audio id="riproduttoreAudio" controls>
+            <source src="@SelectedSongPath" type="audio/mp3" />
+            Il tuo browser non supporta il player audio.
+        </audio>
+    </div>
+    
 }
 
 @code {
     [Parameter] public List<Canzone>? Songs { get; set; }
-    ElementReference AudioReference;
 
-    private string SelectedSongPath = null;
+    private string? SelectedSongPath;
 
     private async Task OnSongSelected(ChangeEventArgs e)
     {
         SelectedSongPath = e.Value?.ToString();
-        await JSRuntime.InvokeVoidAsync("playAudio", AudioReference, SelectedSongPath);
+        await JSRuntime.InvokeVoidAsync("audioPlayer.playAudio", SelectedSongPath);
     }
 }

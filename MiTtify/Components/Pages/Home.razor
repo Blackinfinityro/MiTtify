@@ -9,6 +9,7 @@
 @using MiTtify.Components.Shared
 @inject IDbContextFactory<MiTtify.Data.MiTtifyContext> DbFactory
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 @attribute [Authorize]
 
@@ -20,7 +21,7 @@
         <p id="titolo">MiTtify</p>
         <div id="immagineProfilo">
             <NavLink class="nav-link" href="Account/Manage">
-                <img href="Account/Manage" src="photo_2025-05-20_21-08-45 senza sfondo.png" height="120px">
+                <img href="Account/Manage" src="gray-user-profile-icon-png-fP8Q1P.png" height="120px">
             </NavLink>
         </div>
 
@@ -71,6 +72,7 @@
     {
         CurrentSongPath = path;
     }
+    
     protected override void OnInitialized()
     {
         currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
